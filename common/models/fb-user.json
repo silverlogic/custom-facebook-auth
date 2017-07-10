@@ -1,0 +1,51 @@
+{
+  "name": "FBUser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "facebookPicUrl": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "loginWithFacebook": {
+      "accepts": [
+        {
+          "arg": "oauth-token",
+          "type": "string",
+          "required": true,
+          "description": "An OAuth 2 token received from Facebook when logging in. This is retrieved from the registered callback url."
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "An instance of FBUser"
+        }
+      ],
+      "description": "Allows users to log in with an OAuth 2 token received from Facebook.",
+      "http": [
+        {
+          "path": "/login-facebook",
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}
